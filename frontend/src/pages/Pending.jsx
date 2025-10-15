@@ -1,12 +1,16 @@
-import React from 'react'
-import PendingTasks from '../components/PendingTasks'
+import React from "react";
+import PendingTasks from "../components/PendingTasks";
 
+/**
+ * Smart Task - Pending Page
+ * Displays all pending (incomplete) tasks.
+ */
 const Pending = () => {
   return (
-    <div>
+    <main className="p-4 md:p-6">
       <PendingTasks />
-    </div>
-  )
-}
+    </main>
+  );
+};
 
-export default Pending
+export default Pending;
