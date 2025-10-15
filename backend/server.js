@@ -1,38 +1,31 @@
-import express from 'express';
 import cors from 'cors';
 import 'dotenv/config';
+import express from 'express';
 import { connectDB } from './config/db.js';
-import cookieParser from 'cookie-parser';
+
 import userRouter from './routes/userRoute.js';
 import taskRouter from './routes/taskRoute.js';
 
-
-
 const app = express();
-const port = process.env.PORT || 7777;
-const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || 'http://localhost:5173'; 
+const port = process.env.PORT || 4000;
 
-app.use(cors({
-  origin: FRONTEND_ORIGIN,
-  credentials: true,
-}));
+// Middleware
+app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({extended:true}));
-app.use(cookieParser());
+app.use(express.urlencoded({ extended: true }));
 
+// Database Connection
+connectDB();
 
+// Routes
+app.use("/api/user", userRouter);
 
-app.use('/api/user',userRouter);
-app.use('/api/tasks',taskRouter)
+app.use('/api/tasks', taskRouter);
 
+app.get('/', (req, res) => {
+    res.send('API Working');
+});
 
-connectDB()
-  .then(() => {
-    console.log("Database connection established...");
-    app.listen(port, () => {
-      console.log(`Server is successfully listening on port ${port}`);
-    });
-  })
-  .catch((err) => {
-    console.error("Database cannot be connected!!");
-  });
+app.listen(port, () => {
+    console.log(`Server Started on http://localhost:${port}`);
+});

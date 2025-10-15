@@ -1,25 +1,22 @@
 import express from 'express';
-import { 
-  getCurrentUser, 
-  logoutUser, 
-  loginUser, 
-  registerUser, 
-  updatePassword, 
-  updateProfile 
+import {
+    registerUser,
+    loginUser,
+    getCurrentUser,
+    updateProfile,
+    updatePassword,
 } from '../controllers/userController.js';
 import authMiddleware from '../middleware/auth.js';
 
+const userRouter = express.Router();
 
-const userRouter = express.Router(); 
-
-// PUBLIC ROUTES
+// Public
 userRouter.post('/register', registerUser);
 userRouter.post('/login', loginUser);
 
-// PRIVATE ROUTES (require authentication)
-userRouter.post('/logout', authMiddleware, logoutUser);
+// Protected
 userRouter.get('/me', authMiddleware, getCurrentUser);
-userRouter.put('/profile',  authMiddleware, updateProfile);
+userRouter.put('/profile', authMiddleware, updateProfile);
 userRouter.put('/password', authMiddleware, updatePassword);
 
-export default userRouter; 
+export default userRouter;
