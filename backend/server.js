@@ -10,8 +10,12 @@ import taskRouter from './routes/taskRoute.js';
 
 const app = express();
 const port = process.env.PORT || 7777;
+const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || 'http://localhost:5173'; 
 
-app.use(cors());
+app.use(cors({
+  origin: FRONTEND_ORIGIN,
+  credentials: true,
+}));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
