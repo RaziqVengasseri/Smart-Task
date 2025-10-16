@@ -49,15 +49,15 @@ const SignUp = ({ onSwitchMode }) => {
   };
 
   return (
-    <div className="max-w-md w-full bg-white shadow-lg border border-purple-100 rounded-xl p-8">
+    <div className="max-w-md w-full bg-slate-900/80 backdrop-blur-xl shadow-2xl shadow-pink-500/20 border border-pink-500/30 rounded-2xl p-8">
       {/* Header */}
       <div className="mb-6 text-center">
-        <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-full mx-auto flex items-center justify-center mb-4">
+        <div className="w-16 h-16 bg-gradient-to-br from-pink-600 to-rose-600 rounded-full mx-auto flex items-center justify-center mb-4 shadow-lg shadow-pink-500/50">
           <UserPlus className="w-8 h-8 text-white" />
         </div>
-        <h2 className="text-2xl font-bold text-gray-800">Create an Account</h2>
-        <p className="text-gray-500 text-sm mt-1">
-          Join <span className="font-semibold text-purple-600">Smart Task</span>{" "}
+        <h2 className="text-2xl font-bold text-white">Create an Account</h2>
+        <p className="text-gray-400 text-sm mt-1">
+          Join <span className="font-bold text-pink-400">Smart Task</span>{" "}
           and simplify your workflow.
         </p>
       </div>
@@ -75,21 +75,24 @@ const SignUp = ({ onSwitchMode }) => {
 
       {/* Form */}
       <form onSubmit={handleSubmit} className="space-y-4">
-        {FIELDS.map(({ name, type, placeholder, icon: Icon }) => (
-          <div key={name} className={Inputwrapper}>
-            {Icon && <Icon className="text-purple-500 w-5 h-5 mr-2" />} {/* ✅ Fix */}
-            <input
-              type={type}
-              placeholder={placeholder}
-              value={formData[name]}
-              onChange={(e) =>
-                setFormData({ ...formData, [name]: e.target.value })
-              }
-              className="w-full focus:outline-none text-sm text-gray-700 placeholder-gray-400"
-              required
-            />
-          </div>
-        ))}
+        {FIELDS.map((field) => {
+          const IconComponent = field.icon;
+          return (
+            <div key={field.name} className={Inputwrapper}>
+              {IconComponent && <IconComponent className="text-pink-400 w-5 h-5 mr-2" />}
+              <input
+                type={field.type}
+                placeholder={field.placeholder}
+                value={formData[field.name]}
+                onChange={(e) =>
+                  setFormData({ ...formData, [field.name]: e.target.value })
+                }
+                className="w-full focus:outline-none text-sm text-white bg-transparent placeholder-gray-500"
+                required
+              />
+            </div>
+          );
+        })}
 
         <button type="submit" className={BUTTONCLASSES} disabled={loading}>
           {loading ? (
@@ -103,11 +106,11 @@ const SignUp = ({ onSwitchMode }) => {
       </form>
 
       {/* Switch to Login */}
-      <p className="text-center text-sm text-gray-600 mt-6">
+      <p className="text-center text-sm text-gray-400 mt-6">
         Already have an account?{" "}
         <button
           onClick={onSwitchMode}
-          className="text-purple-600 hover:text-purple-700 hover:underline font-medium transition-colors"
+          className="text-pink-400 hover:text-pink-300 hover:underline font-bold transition-colors"
         >
           Log In
         </button>

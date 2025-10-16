@@ -97,44 +97,46 @@ const Login = ({ onSubmit, onSwitchMode }) => {
   ];
 
   return (
-    <div className="max-w-md w-full bg-white rounded-2xl shadow-md border border-purple-100 p-8 transition-all duration-300">
+    <div className="max-w-md w-full bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-2xl shadow-pink-500/20 border border-pink-500/30 p-8 transition-all duration-300">
       <ToastContainer position="top-center" autoClose={3000} hideProgressBar />
 
       {/* Header */}
       <div className="text-center mb-6">
-        <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-fuchsia-500 to-purple-600 rounded-full flex items-center justify-center">
+        <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-pink-600 to-rose-600 rounded-full flex items-center justify-center shadow-lg shadow-pink-500/50">
           <LogIn className="w-8 h-8 text-white" />
         </div>
-        <h2 className="text-2xl font-bold text-gray-800">Welcome Back</h2>
-        <p className="text-gray-500 text-sm mt-1">
-          Sign in to continue with <span className="font-semibold text-purple-600">Smart Task</span>
+        <h2 className="text-2xl font-bold text-white">Welcome Back</h2>
+        <p className="text-gray-400 text-sm mt-1">
+          Sign in to continue with <span className="font-bold text-pink-400">Smart Task</span>
         </p>
       </div>
 
       {/* Login Form */}
       <form onSubmit={handleSubmit} className="space-y-4">
-        {fields.map(({ name, type, placeholder, icon: Icon, isPassword }) => (
-          <div key={name} className={INPUTWRAPPER}>
-            <Icon className="text-purple-500 w-5 h-5 mr-2" />
+        {fields.map((field) => {
+          const IconComponent = field.icon;
+          return (
+          <div key={field.name} className={INPUTWRAPPER}>
+            <IconComponent className="text-pink-400 w-5 h-5 mr-2" />
             <input
-              type={type}
-              placeholder={placeholder}
-              value={formData[name]}
-              onChange={(e) => setFormData({ ...formData, [name]: e.target.value })}
-              className="w-full focus:outline-none text-sm text-gray-700"
+              type={field.type}
+              placeholder={field.placeholder}
+              value={formData[field.name]}
+              onChange={(e) => setFormData({ ...formData, [field.name]: e.target.value })}
+              className="w-full focus:outline-none text-sm text-white bg-transparent placeholder-gray-500"
               required
             />
-            {isPassword && (
+            {field.isPassword && (
               <button
                 type="button"
                 onClick={togglePassword}
-                className="ml-2 text-gray-500 hover:text-purple-500 transition-colors"
+                className="ml-2 text-gray-400 hover:text-pink-400 transition-colors"
               >
                 {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
               </button>
             )}
           </div>
-        ))}
+        )})}
 
         <div className="flex items-center">
           <input
@@ -142,10 +144,10 @@ const Login = ({ onSubmit, onSwitchMode }) => {
             type="checkbox"
             checked={rememberMe}
             onChange={() => setRememberMe(!rememberMe)}
-            className="h-4 w-4 text-purple-600 border-gray-300 rounded focus:ring-purple-400"
+            className="h-4 w-4 text-pink-600 border-pink-500/30 bg-slate-800 rounded focus:ring-pink-500 focus:ring-2"
             required
           />
-          <label htmlFor="rememberMe" className="ml-2 text-sm text-gray-700">
+          <label htmlFor="rememberMe" className="ml-2 text-sm text-gray-300 font-medium">
             Remember Me
           </label>
         </div>
@@ -162,12 +164,12 @@ const Login = ({ onSubmit, onSwitchMode }) => {
       </form>
 
       {/* Footer */}
-      <p className="text-center text-sm text-gray-600 mt-6">
-        Don’t have an account?{" "}
+      <p className="text-center text-sm text-gray-400 mt-6">
+        Don't have an account?{" "}
         <button
           type="button"
           onClick={handleSwitchMode}
-          className="text-purple-600 hover:text-purple-700 hover:underline font-medium transition-colors"
+          className="text-pink-400 hover:text-pink-300 hover:underline font-bold transition-colors"
         >
           Sign Up
         </button>
