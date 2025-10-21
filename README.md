@@ -213,6 +213,6 @@ You are free to modify and use it under the **MIT License**.
 ## 💬 Author
 
 **Mohammed Raziq V**
-🎓 B.Tech CSE | 💻 MERN Stack Developer
+🎓 B.Tech CSE @ IIIT K| 💻 MERN Stack Developer
 🌐 Passionate about clean architecture & modern web solutions
 
