@@ -9,10 +9,7 @@ import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import "./index.css";
 
-/**
- * Smart Task - Main Application Component
- * Handles routing, authentication flow, and session persistence.
- */
+
 const App = () => {
   const navigate = useNavigate();
 
