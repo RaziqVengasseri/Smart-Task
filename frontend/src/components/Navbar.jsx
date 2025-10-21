@@ -2,18 +2,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { Settings, ChevronDown, LogOut, Zap } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-/**
- * Navbar - Smart Task
- *
- * Props:
- * - user: { name?, email?, avatar? }
- * - onLogout: () => void   // called when user chooses to logout
- *
- * Notes:
- * - Visible app name changed to "Smart Task"
- * - Dropdown closes when clicking outside or pressing Escape
- * - Keeps existing behavior; minimal surface to change later for cookies
- */
+
 
 const Navbar = ({ user = {}, onLogout }) => {
   const [menuOpen, setMenuOpen] = useState(false);

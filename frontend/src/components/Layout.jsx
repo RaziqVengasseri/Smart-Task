@@ -11,7 +11,7 @@ const Layout = ({ user, onLogout }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  /** 🔄 Fetch tasks from backend */
+  /**  Fetch tasks from backend */
   const fetchTasks = useCallback(async () => {
     setLoading(true);
     setError(null);
@@ -46,7 +46,7 @@ const Layout = ({ user, onLogout }) => {
     fetchTasks();
   }, [fetchTasks]);
 
-  /** 📊 Calculate task statistics */
+  /**  Calculate task statistics */
   const stats = useMemo(() => {
     const completedTasks = tasks.filter(
       (t) =>
@@ -65,7 +65,7 @@ const Layout = ({ user, onLogout }) => {
     return { totalCount, completedTasks, pendingCount, completionPercentage };
   }, [tasks]);
 
-  /** 🎯 Reusable stat card component */
+  /**  Reusable stat card component */
   const StatCard = ({ title, value, icon }) => (
     <div className="p-3 sm:p-4 rounded-xl bg-slate-900/60 backdrop-blur-md border border-pink-500/20 shadow-xl hover:shadow-pink-500/20 transition-all duration-300 hover:border-pink-500/30 group">
       <div className="flex items-center gap-2">
@@ -82,7 +82,7 @@ const Layout = ({ user, onLogout }) => {
     </div>
   );
 
-  /** 🌀 Loading UI */
+  /**  Loading UI */
   if (loading)
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 flex items-center justify-center">
@@ -90,7 +90,7 @@ const Layout = ({ user, onLogout }) => {
       </div>
     );
 
-  /** ⚠️ Error UI */
+  /**  Error UI */
   if (error)
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 flex items-center justify-center p-6">
